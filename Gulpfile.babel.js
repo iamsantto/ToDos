@@ -1,6 +1,9 @@
 import _ from 'lodash'
 import gulp from 'gulp'
 import requireDir from 'require-dir'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const tasks = requireDir('./tasks')
 

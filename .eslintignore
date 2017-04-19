@@ -1,0 +1,4 @@
+build/*.js
+client/assets/**/*.js
+tasks/*.js
+webpack.config.js
