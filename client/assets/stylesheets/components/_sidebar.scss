@@ -3,4 +3,8 @@
 .sidebar {
   height: $sidebar-height;
   border-right: 1px solid $primary-color;
+
+  .tab-header div{
+    background-color: #fff !important;
+  }
 }
