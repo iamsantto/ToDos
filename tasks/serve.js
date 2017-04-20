@@ -26,6 +26,10 @@ module.exports = () => {
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended: true }))
 
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../index.html'))
+  })
+
   httpServer.listen(process.env.PORT, function(err) {
     if (err)
       throw new gutil.PluginError('webpack-dev-server', err)

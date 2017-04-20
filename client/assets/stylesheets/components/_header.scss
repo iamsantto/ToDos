@@ -1,0 +1,14 @@
+@import '../base/variables';
+
+.header {
+  color: $primary-text-color;
+
+  .toolbar {
+    background-color: $primary-color !important;
+    height: $header-height !important;
+
+    svg {
+      color: $primary-text-color !important;
+    }
+  }
+}

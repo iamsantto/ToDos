@@ -1,0 +1,14 @@
+/* Colors */
+$primary-color: #eee;
+$primary-text-color: #000;
+
+/* Heights */
+$total-height: 100%;
+$header-height: 50px;
+$sidebar-height: calc(#{$total-height} - #{$header-height});
+
+/* Widths */
+$total-width: 100%;
+
+/* Padding */
+$basic-pad: 15px;
