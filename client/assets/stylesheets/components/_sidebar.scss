@@ -4,7 +4,13 @@
   height: $sidebar-height;
   border-right: 1px solid $primary-color;
 
-  .tab-header div{
-    background-color: #fff !important;
+  .tab-header {
+    >div:first-child {
+      background-color: transparent !important;
+
+      button {
+        color: $primary-text-color !important;
+      }
+    }
   }
 }
