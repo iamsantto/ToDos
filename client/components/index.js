@@ -1,4 +1,6 @@
 export { default as Categories } from './Categories'
+export { default as Deadlines } from './Deadlines'
+export { default as Groups } from './Groups'
 export { default as Header } from './Header'
 export { default as Labels } from './Labels'
 export { default as MainPanel } from './MainPanel'

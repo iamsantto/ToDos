@@ -10,6 +10,11 @@ class Dashboard extends Component {
     super(props)
   }
 
+  componentDidMount() {
+    this.props.actions.getCategories(1)
+    this.props.actions.getLabels(1)
+  }
+
   render() {
     const menu = [{
       option: 'Settings',
@@ -29,7 +34,7 @@ class Dashboard extends Component {
       <div>
         <Header title="Dashboard" menuItems={menu}/>
         <div className="row">
-          <Sidebar tabValue={sidebar.tabValue} handleChange={handleChange} />
+          <Sidebar tabValue={sidebar.tabValue} handleChange={handleChange} labels={sidebar.labels} categories={sidebar.categories} />
           <MainPanel />
         </div>
       </div>
