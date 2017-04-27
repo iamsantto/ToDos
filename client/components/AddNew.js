@@ -20,7 +20,7 @@ const AddNew = props => {
         onClick={handleOnClick}
         icon={<i className="material-icons">add</i>}
       />
-      <AddModal actions={props.actions} isOpen={props.showModal} />
+      <AddModal labels={props.labels} categories={props.categories} todoPanel={props.todoPanel} actions={props.actions} isOpen={props.showModal} />
     </div>
   )
 }

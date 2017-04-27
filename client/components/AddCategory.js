@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import { TextFieldInput } from './'
 
 const textField = value => {
-  return <TextFieldInput label="Category" type="text" value={value} />
+  return <TextFieldInput label="Category" type="text" value={value} fullWidth={true} />
 }
 
 let Addcategory = props => {
@@ -17,12 +17,14 @@ let Addcategory = props => {
   const { handleSubmit } = props
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="col-md-offset-2 col-md-8 text-center">
-      <div className="col-md-6">
-        <Field name="category" component={textField} />
-      </div>
-      <div className="col-md-offset-2 col-md-4 med-top-pad">
-        <RaisedButton label="Add" primary={true} type="submit" />
+    <form onSubmit={handleSubmit(submit)}>
+      <div className="row">
+        <div className="col-md-10">
+          <Field name="category" component={textField} />
+        </div>
+        <div className="col-md-2 lg-top-pad">
+          <RaisedButton label="Add" primary={true} type="submit" />
+        </div>
       </div>
     </form>
   )

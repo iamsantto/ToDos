@@ -9,7 +9,13 @@ const actionTypes = {};
   'HIDE_ADD_MODAL',
 
   //ToDoPanel Actions
-  'TOGGLE_TITLE'
+  'TOGGLE_TITLE',
+  'TAG_LABEL',
+  'UNTAG_LABEL',
+  'SHOW_TAGGING',
+  'DONE_TAGGING',
+  'HIDE_TAGGING',
+  'CLEAR_LABELS'
 ].forEach(action => { actionTypes[action] = action })
 
 export default Object.freeze(actionTypes)

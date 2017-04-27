@@ -6,7 +6,8 @@ const Deadlines = props => {
   const today = "Today"
   const nextSeven = "Next 7 Days"
   const month = "This Month"
-  const all = "All"
+  const all = "Everything"
+  const completed = "Completed"
 
   const handleClick = value => {
     props.actions.toggleTitle(value)
@@ -18,6 +19,7 @@ const Deadlines = props => {
         <ListItem primaryText={today} onClick={()=>handleClick(today)} leftIcon={<i className="material-icons">priority_high</i>} />
         <ListItem primaryText={nextSeven} onClick={()=>handleClick(nextSeven)} leftIcon={<i className="material-icons">filter_7</i>} />
         <ListItem primaryText={month} onClick={()=>handleClick(month)} leftIcon={<i className="material-icons">insert_invitation</i>} />
+        <ListItem primaryText={completed} onClick={()=>handleClick(completed)} leftIcon={<i className="material-icons">done_all</i>} />
         <ListItem primaryText={all} onClick={()=>handleClick(all)} leftIcon={<i className="material-icons">layers</i>} />
       </List>
       <Divider />

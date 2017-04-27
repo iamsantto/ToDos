@@ -8,10 +8,10 @@ const Groups = props => {
   return (
     <Tabs className="tab-header content" value={props.tabValue} onChange={props.handleChange}>
       <Tab label="categories" value="categories">
-        <Categories actions={props.actions} showModal={props.showModal} categories={props.categories} />
+        <Categories todoPanel={props.todoPanel} actions={props.actions} showModal={props.showModal} categories={props.categories} labels={props.labels} />
       </Tab>
       <Tab label="labels" value="labels">
-        <Labels actions={props.actions} showModal={props.showModal} labels={props.labels} />
+        <Labels todoPanel={props.todoPanel} actions={props.actions} showModal={props.showModal} labels={props.labels} categories={props.categories} />
       </Tab>
     </Tabs>
   )

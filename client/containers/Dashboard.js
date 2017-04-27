@@ -34,8 +34,8 @@ class Dashboard extends Component {
       <div>
         <Header title="Dashboard" menuItems={menu}/>
         <div className="row">
-          <Sidebar actions={this.props.actions} showModal={sidebar.showModal} tabValue={sidebar.tabValue} handleChange={handleChange} labels={sidebar.labels} categories={sidebar.categories} />
-          <MainPanel actions={this.props.actions} showModal={sidebar.showModal} title={todoPanel.title} />
+          <Sidebar todoPanel={todoPanel} actions={this.props.actions} showModal={sidebar.showModal} tabValue={sidebar.tabValue} handleChange={handleChange} labels={sidebar.labels} categories={sidebar.categories} />
+          <MainPanel labels={sidebar.labels} categories={sidebar.categories} todoPanel={todoPanel} actions={this.props.actions} showModal={sidebar.showModal} />
         </div>
       </div>
     )

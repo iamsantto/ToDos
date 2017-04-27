@@ -16,7 +16,7 @@ const Labels = props => {
     <div>
       <List>
         <div className="row small-top-pad">
-          <AddNew actions={props.actions} showModal={props.showModal} className="pull-right" type="Label" />
+          <AddNew categories={props.categories} labels={props.labels} todoPanel={props.todoPanel} actions={props.actions} showModal={props.showModal} className="pull-right" type="Label" />
         </div>
         <div className="content">
           {labelsList}

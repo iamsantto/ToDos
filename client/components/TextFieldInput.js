@@ -5,6 +5,7 @@ const TextFieldInput = props => {
   return (
     <TextField
       hintText={props.hint}
+      fullWidth={props.fullWidth || false}
       floatingLabelText={props.label}
       type={props.type}
       {...props.value.input}
