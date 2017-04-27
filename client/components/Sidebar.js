@@ -6,7 +6,7 @@ const Sidebar = props => {
     <div className="sidebar col-md-3">
       <div className="content">
         <Deadlines />
-        <Groups tabValue={props.tabValue} handleChange={props.handleChange} labels={props.labels} categories={props.categories} />
+        <Groups actions={props.actions} showModal={props.showModal} tabValue={props.tabValue} handleChange={props.handleChange} labels={props.labels} categories={props.categories} />
       </div>
     </div>
   )

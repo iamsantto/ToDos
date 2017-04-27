@@ -1,6 +1,8 @@
 import React from 'react'
 import { List, ListItem } from 'material-ui/List'
 
+import { AddNew } from './'
+
 const Categories = props => {
   const categoriesList = props.categories.map(category =>
     <ListItem key={category.name} primaryText={category.name} leftIcon={<i className="material-icons">bookmark</i>} initiallyOpen={false} primaryTogglesNestedList={true}
@@ -10,9 +12,14 @@ const Categories = props => {
   )
 
   return (
-    <div className="content">
+    <div>
       <List>
-        {categoriesList}
+        <div className="row top-pad">
+          <AddNew actions={props.actions} showModal={props.showModal} className="pull-right" type="Category" />
+        </div>
+        <div className="content">
+          {categoriesList}
+        </div>
       </List>
     </div>
   )

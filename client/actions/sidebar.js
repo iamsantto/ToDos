@@ -30,6 +30,22 @@ const getLabels = (userId) => {
   }
 }
 
+const showAddModal = (value) => {
+  return {
+    type: types.SHOW_ADD_MODAL,
+    payload: {
+      value
+    }
+  }
+}
+
+const hideAddModal = () => {
+  return {
+    type: types.HIDE_ADD_MODAL,
+    payload: {}
+  }
+}
+
 const toggleTabs = (value) => {
   return {
     type: types.TOGGLE_TABS,
@@ -39,4 +55,4 @@ const toggleTabs = (value) => {
   }
 }
 
-export default { getCategories, getLabels, toggleTabs }
+export default { getCategories, getLabels, toggleTabs, showAddModal, hideAddModal }
