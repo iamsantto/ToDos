@@ -31,7 +31,7 @@ reducers[types.SHOW_ADD_MODAL] = (state, action) => {
     return Object.assign({}, state, { showModal: { addCategory: true, addLabel: false, addToDoList: false } })
   if (action.payload.value === 'Label')
     return Object.assign({}, state, { showModal: { addCategory: false, addLabel: true, addToDoList: false } })
-  if (action.payload.value === 'ToDoList')
+  if (action.payload.value === 'To-Do')
     return Object.assign({}, state, { showModal: { addCategory: false, addLabel: false, addToDoList: true } })
 }
 

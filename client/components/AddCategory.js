@@ -11,14 +11,19 @@ const textField = value => {
 let Addcategory = props => {
   const submit = values => {
     console.log(values)
+    props.close()
   }
 
   const { handleSubmit } = props
 
   return (
     <form onSubmit={handleSubmit(submit)} className="col-md-offset-2 col-md-8 text-center">
-      <Field name="category" component={textField} /><br />
-      <RaisedButton label="Add" primary={true} type="submit" />
+      <div className="col-md-6">
+        <Field name="category" component={textField} />
+      </div>
+      <div className="col-md-offset-2 col-md-4 med-top-pad">
+        <RaisedButton label="Add" primary={true} type="submit" />
+      </div>
     </form>
   )
 }

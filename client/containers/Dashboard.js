@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { Header, Sidebar, MainPanel } from '../components'
-import { sidebarActions } from '../actions'
+import { sidebarActions, todoPanelActions } from '../actions'
 
 class Dashboard extends Component {
   constructor(props) {
@@ -28,14 +28,14 @@ class Dashboard extends Component {
       this.props.actions.toggleTabs(value)
     }
 
-    const { sidebar } = this.props
+    const { sidebar, todoPanel } = this.props
 
     return (
       <div>
         <Header title="Dashboard" menuItems={menu}/>
         <div className="row">
           <Sidebar actions={this.props.actions} showModal={sidebar.showModal} tabValue={sidebar.tabValue} handleChange={handleChange} labels={sidebar.labels} categories={sidebar.categories} />
-          <MainPanel />
+          <MainPanel actions={this.props.actions} showModal={sidebar.showModal} title={todoPanel.title} />
         </div>
       </div>
     )
@@ -45,13 +45,17 @@ class Dashboard extends Component {
 let mapStateToProps = (state) => {
   return {
     dashboard: state.app.dashboard,
-    sidebar: state.app.sidebar
+    sidebar: state.app.sidebar,
+    todoPanel: state.app.todoPanel
   }
 }
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    actions: bindActionCreators(sidebarActions, dispatch)
+    actions: bindActionCreators(Object.assign({},
+      sidebarActions,
+      todoPanelActions
+      ), dispatch)
   }
 }
 

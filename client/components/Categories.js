@@ -14,7 +14,7 @@ const Categories = props => {
   return (
     <div>
       <List>
-        <div className="row top-pad">
+        <div className="row small-top-pad">
           <AddNew actions={props.actions} showModal={props.showModal} className="pull-right" type="Category" />
         </div>
         <div className="content">

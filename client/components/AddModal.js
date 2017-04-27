@@ -16,22 +16,22 @@ const AddModal = props => {
   if (props.isOpen && props.isOpen.addCategory) {
     children = (
       <Dialog title={<div>Add Category {closeButton}</div>} modal={true} open={props.isOpen && props.isOpen.addCategory} onRequestClose={handleClose}>
-        <AddCategory />
+        <AddCategory close={props.actions.hideAddModal} />
       </Dialog>
     )
   } else if (props.isOpen && props.isOpen.addLabel) {
     children = (
       children = (
         <Dialog title={<div>Add Label {closeButton}</div>} modal={true} open={props.isOpen && props.isOpen.addLabel} onRequestClose={handleClose}>
-          <AddLabel />
+          <AddLabel close={props.actions.hideAddModal} />
         </Dialog>
       )
     )
   } else if (props.isOpen && props.isOpen.addToDoList) {
     children = (
       children = (
-        <Dialog title={<div>Add To Do List {closeButton}</div>} modal={true} open={props.isOpen && props.isOpen.addToDoList} onRequestClose={handleClose}>
-          <AddTodoList />
+        <Dialog title={<div>Add To-Do List {closeButton}</div>} modal={true} open={props.isOpen && props.isOpen.addToDoList} onRequestClose={handleClose}>
+          <AddTodoList close={props.actions.hideAddModal} />
         </Dialog>
       )
     )

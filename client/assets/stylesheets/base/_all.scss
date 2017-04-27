@@ -10,9 +10,13 @@ body {
   padding: $basic-pad;
 }
 
-.top-pad {
+.small-top-pad {
   padding-top: $small-top-pad;
 }
+
+.med-top-pad {
+    padding-top: $medium-top-pad;
+  }
 
 @font-face {
   font-family: 'Material Icons';
