@@ -12,8 +12,9 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    this.props.actions.getCategories(1)
-    this.props.actions.getLabels(1)
+    this.props.actions.getCategories()
+    this.props.actions.getLabels()
+    this.props.actions.getTodoLists()
   }
 
   render() {
@@ -39,10 +40,12 @@ class Dashboard extends Component {
     return (
       <div>
         <Header title="Dashboard" menuItems={menu}/>
-        <div className="row">
-          <Sidebar todoPanel={todoPanel} actions={this.props.actions} showModal={sidebar.showModal} tabValue={sidebar.tabValue} handleChange={handleChange} labels={sidebar.labels} categories={sidebar.categories} />
-          <MainPanel labels={sidebar.labels} categories={sidebar.categories} todoPanel={todoPanel} actions={this.props.actions} showModal={sidebar.showModal} />
-          {snackbar}
+        <div className="container-fluid">
+          <div className="row">
+            <Sidebar todoPanel={todoPanel} actions={this.props.actions} showModal={sidebar.showModal} tabValue={sidebar.tabValue} handleChange={handleChange} labels={sidebar.labels} categories={sidebar.categories} />
+            <MainPanel labels={sidebar.labels} categories={sidebar.categories} todoPanel={todoPanel} actions={this.props.actions} showModal={sidebar.showModal} />
+            {snackbar}
+          </div>
         </div>
       </div>
     )

@@ -18,6 +18,35 @@ const hideSnackbar = () => {
   }
 }
 
+const getTodoLists = () => {
+  const lists = [
+    {
+      title: "Random Important To-Do List",
+      isCompleted: false,
+      labels: ['Priority', 'Production'],
+      category: 'Project A',
+      tasks: ["This is the first step", "Second step", "Really really really long step which is super important and takes time to do without which this to-do list is meaningless, i hope its long enough", "finishing touches"],
+      deadline: '2017-05-17T18:30:00.000Z'
+    },
+    {
+
+      title: "Random Normal To-Do List",
+      isCompleted: true,
+      labels: ['Staging'],
+      category: 'Project B',
+      tasks: ["This is the first step", "Second step", "Really really really long step which is super important and takes time to do without which this to-do list is meaningless, i hope its long enough", "finishing touches"],
+      deadline: '2017-05-17T18:30:00.000Z'
+    }
+  ]
+
+  return {
+    type: types.GET_TODO_LISTS_FINISH,
+    payload: {
+      lists
+    }
+  }
+}
+
 const saveTodoList = body => {
   let options = {
     method: 'POST',
@@ -113,4 +142,4 @@ const clearValues = () => {
   }
 }
 
-export default { addTaskToState, clearValues, toggleTitle, tagLabel, unTagLabel, showTagging, hideTagging, hideToDoAdder, showTodoAdder, saveTodoList, hideSnackbar }
+export default { addTaskToState, clearValues, toggleTitle, tagLabel, unTagLabel, showTagging, hideTagging, hideToDoAdder, showTodoAdder, saveTodoList, hideSnackbar, getTodoLists }

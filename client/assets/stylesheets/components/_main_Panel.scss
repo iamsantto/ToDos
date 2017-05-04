@@ -5,11 +5,11 @@
 }
 
 .chips {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
 }
 
 .add-table {
-  max-height: 300px;
+  max-height: $add-table-height;
   overflow: auto;
 }

@@ -13,11 +13,16 @@ const initialState = {
   snackbar: {
     show: false,
     message: ''
-  }
+  },
+  lists: []
 }
 
 reducers[types.TOGGLE_TITLE] = (state, action) => {
   return Object.assign({}, state, { title: action.payload.value })
+}
+
+reducers[types.GET_TODO_LISTS_FINISH] = (state, action) => {
+  return Object.assign({}, state, { lists: action.payload.lists })
 }
 
 reducers[types.UNTAG_LABEL] = {

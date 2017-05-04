@@ -10,7 +10,7 @@ import Subheader from 'material-ui/Subheader'
 import Chip from 'material-ui/Chip'
 import Dialog from 'material-ui/Dialog'
 import Checkbox from 'material-ui/Checkbox'
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn, } from 'material-ui/Table'
+import {Table, TableBody, TableRow, TableRowColumn, } from 'material-ui/Table'
 
 import { AddToDo, TextFieldInput } from './'
 
@@ -136,7 +136,7 @@ let AddTodoList = props => {
     <form onSubmit={handleSubmit(submit)}>
       <Field name="title" label="Title" component={textField} /><br />
       <span className="chips">
-          {labels}
+        {labels}
       </span>
       <div className="row">
         <div className="col-md-6">

@@ -1,13 +1,13 @@
 import types from '../constants/actionTypes'
 
-const getCategories = (userId) => {
+const getCategories = () => {
   const categories = [
     {
       name: 'Project A',
-      todos: ['Deploy Server', 'Testing']
+      todos: ['ToDoList 1', 'ToDoList 2']
     }, {
       name: 'Project B',
-      todos: ['Set Up', 'Designs']
+      todos: ['List 1', 'List 2']
     }
   ]
 
@@ -19,7 +19,7 @@ const getCategories = (userId) => {
   }
 }
 
-const getLabels = (userId) => {
+const getLabels = () => {
   const labels = ['Label A', 'Label B', 'Label C']
 
   return {
