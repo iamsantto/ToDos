@@ -8,6 +8,7 @@
   "author": "Santhosh",
   "license": "",
   "dependencies": {
+    "ajv": "^5.0.1",
     "autoprefixer": "^6.7.7",
     "babel-core": "^6.23.1",
     "babel-eslint": "^7.1.1",
@@ -49,6 +50,8 @@
     "redux-actions": "^1.2.1",
     "redux-form": "^6.5.0",
     "redux-thunk": "^2.2.0",
+    "request": "^2.79.0",
+    "request-promise": "^4.2.0",
     "require-dir": "^0.3.1",
     "sass-loader": "^6.0.0",
     "style-loader": "^0.13.1",

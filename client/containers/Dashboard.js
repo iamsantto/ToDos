@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import Snackbar from 'material-ui/Snackbar'
 
 import { Header, Sidebar, MainPanel } from '../components'
 import { sidebarActions, todoPanelActions } from '../actions'
@@ -16,6 +17,8 @@ class Dashboard extends Component {
   }
 
   render() {
+    let snackbar
+
     const menu = [{
       option: 'Settings',
       onClick: () => { window.alert("Settings") }
@@ -30,12 +33,16 @@ class Dashboard extends Component {
 
     const { sidebar, todoPanel } = this.props
 
+    if (todoPanel.snackbar.show)
+      snackbar = <Snackbar open={todoPanel.snackbar.show} message={todoPanel.snackbar.message} autoHideDuration={4000} onRequestClose={this.props.actions.hideSnackbar} />
+
     return (
       <div>
         <Header title="Dashboard" menuItems={menu}/>
         <div className="row">
           <Sidebar todoPanel={todoPanel} actions={this.props.actions} showModal={sidebar.showModal} tabValue={sidebar.tabValue} handleChange={handleChange} labels={sidebar.labels} categories={sidebar.categories} />
           <MainPanel labels={sidebar.labels} categories={sidebar.categories} todoPanel={todoPanel} actions={this.props.actions} showModal={sidebar.showModal} />
+          {snackbar}
         </div>
       </div>
     )

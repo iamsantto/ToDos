@@ -13,9 +13,14 @@ const actionTypes = {};
   'TAG_LABEL',
   'UNTAG_LABEL',
   'SHOW_TAGGING',
-  'DONE_TAGGING',
   'HIDE_TAGGING',
-  'CLEAR_LABELS'
+  'CLEAR_VALUES',
+  'SHOW_TO_DO_ADDER',
+  'HIDE_TO_DO_ADDER',
+  'ADD_TASK_TO_STATE',
+  'SAVE_TODO_SUCCESS',
+  'SAVE_TODO_FAILURE',
+  'HIDE_SNACKBAR'
 ].forEach(action => { actionTypes[action] = action })
 
 export default Object.freeze(actionTypes)

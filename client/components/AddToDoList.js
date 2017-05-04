@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -9,8 +10,9 @@ import Subheader from 'material-ui/Subheader'
 import Chip from 'material-ui/Chip'
 import Dialog from 'material-ui/Dialog'
 import Checkbox from 'material-ui/Checkbox'
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn, } from 'material-ui/Table'
 
-import { TextFieldInput } from './'
+import { AddToDo, TextFieldInput } from './'
 
 const textField = value => {
   return <TextFieldInput label={value.label} type="text" value={value} fullWidth={true} />
@@ -35,17 +37,21 @@ let AddTodoList = props => {
   let labels
   let labelTagger
   let categories
+  let todoAdder
+  let tasks
 
   let { todoPanel } = props
 
   const submit = values => {
-    console.log(values)
-    props.close()
+    let finalValues = Object.assign({}, values, todoPanel.create)
+
+    props.actions.saveTodoList(finalValues)
+    props.actions.hideAddModal()
     props.actions.clearValues()
   }
 
   const handleNewCheckListItem = () => {
-
+    props.actions.showTodoAdder()
   }
 
   const handleTagLabel = () => {
@@ -60,8 +66,16 @@ let AddTodoList = props => {
     props.actions.hideTagging()
   }
 
-  const handleOnCheck = value => {
-    props.actions.tagLabel(value)
+  const toggleCheckbox = (isChecked, value) => {
+    if (isChecked)
+      props.actions.tagLabel(value)
+    else
+      props.actions.unTagLabel(value)
+  }
+
+  const isChecked = value => {
+    if (todoPanel.create.labels)
+      return _.includes(todoPanel.create.labels, value)
   }
 
   if (todoPanel.create.labels)
@@ -69,16 +83,23 @@ let AddTodoList = props => {
       <Chip key={label} onRequestDelete={() => handleTagDelete(label)}>{label}</Chip>
     )
 
+  if (todoPanel.create.tasks)
+    tasks = todoPanel.create.tasks.map((task, index) =>
+      <TableRow key={index}>
+        <TableRowColumn>{task}</TableRowColumn>
+      </TableRow>
+    )
+
   let checkboxes = 'No Labels Available.'
 
   if (props.labels)
     checkboxes = props.labels.map(label => {
-      return <Checkbox key={label} label={label} onCheck={() => handleOnCheck(label)} />
+      return <Checkbox key={label} label={label} onClick={e => toggleCheckbox(e.target.checked, label)} checked={isChecked(label)} />
     })
 
   if (todoPanel.showTagging) {
     labelTagger = (
-      <Dialog title={<div>Select Tags</div>} modal={true} open={todoPanel.showTagging}>
+      <Dialog title="Select Tags" modal={true} open={todoPanel.showTagging}>
         <div className="checkboxes">
           {checkboxes}
         </div>
@@ -88,6 +109,9 @@ let AddTodoList = props => {
       </Dialog>
     )
   }
+
+  if (todoPanel.showTodoAdder)
+    todoAdder = <AddToDo show={todoPanel.showTodoAdder} close={props.actions.hideToDoAdder} addTaskToState={props.actions.addTaskToState} />
 
   if (props.categories)
     categories = props.categories.map((category, index) => {
@@ -111,6 +135,9 @@ let AddTodoList = props => {
   return (
     <form onSubmit={handleSubmit(submit)}>
       <Field name="title" label="Title" component={textField} /><br />
+      <span className="chips">
+          {labels}
+      </span>
       <div className="row">
         <div className="col-md-6">
           <Field name="category" label="Category" component={selectCategory} />
@@ -128,9 +155,6 @@ let AddTodoList = props => {
         onClick={handleTagLabel}
         icon={<i className="material-icons">add</i>}
         />
-        <span className="chips">
-          {labels}
-        </span>
       </div>
       <div className="content">
         <Subheader className="small-top-pad">Checklist</Subheader>
@@ -140,12 +164,20 @@ let AddTodoList = props => {
         primary={true}
         onClick={handleNewCheckListItem}
         icon={<i className="material-icons">add</i>}
-        />
-      </div><br />
+        /><br /><br />
+        <div className="add-table">
+          <Table selectable={false} className="content">
+            <TableBody>
+              {tasks}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
       <div className="content">
         <RaisedButton label="Create" primary={true} type="submit" />
       </div>
       {labelTagger}
+      {todoAdder}
     </form>
   )
 }

@@ -9,6 +9,7 @@ const AddModal = props => {
 
   const handleClose = () => {
     props.actions.hideAddModal()
+    props.actions.clearValues()
   }
 
   const closeButton = <IconButton className="pull-right" onClick={handleClose}><i className="material-icons">clear</i></IconButton>
@@ -28,7 +29,7 @@ const AddModal = props => {
   } else if (props.isOpen && props.isOpen.addToDoList) {
       children = (
         <Dialog title={<div>Add To-Do List {closeButton}</div>} modal={true} open={props.isOpen && props.isOpen.addToDoList} onRequestClose={handleClose}>
-          <AddTodoList labels={props.labels} categories={props.categories} actions={props.actions} close={props.actions.hideAddModal} todoPanel={props.todoPanel} />
+          <AddTodoList labels={props.labels} categories={props.categories} actions={props.actions} todoPanel={props.todoPanel} />
         </Dialog>
       )
   }

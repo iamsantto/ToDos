@@ -8,3 +8,8 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.add-table {
+  max-height: 300px;
+  overflow: auto;
+}
