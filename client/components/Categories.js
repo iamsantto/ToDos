@@ -4,11 +4,13 @@ import { List, ListItem } from 'material-ui/List'
 import { AddNew } from './'
 
 const Categories = props => {
+  const handleOnClick = category => {
+    props.actions.toggleTitle(category.name)
+    props.actions.getTodoLists({ category: category.id })
+  }
+
   const categoriesList = props.categories.map(category =>
-    <ListItem key={category.name} primaryText={category.name} leftIcon={<i className="material-icons">bookmark</i>} initiallyOpen={false} primaryTogglesNestedList={true}
-      nestedItems={ category.todos.map(todo =>
-        <ListItem key={todo} primaryText={todo} leftIcon={<i className="material-icons">note</i>} />) }
-    />
+    <ListItem key={category.id} onClick={() => handleOnClick(category)} primaryText={category.name} leftIcon={<i className="material-icons">bookmark</i>} />
   )
 
   return (

@@ -3,22 +3,45 @@ import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 import {List, ListItem} from 'material-ui/List'
 import Checkbox from 'material-ui/Checkbox'
+import IconButton from 'material-ui/IconButton'
+import Dialog from 'material-ui/Dialog'
 
 import { AddNew } from './'
 
 const MainPanel = props => {
   let lists
+  let displayDialog
 
   const { todoPanel } = props
 
-  let toggleCheckbox = (isChecked, listId, taskId) => {
-    props.actions.toggleCompleteTask({isChecked, listId, taskId})
+  const toggleCheckbox = (isChecked, listId, taskId) => {
+    props.actions.completeTaskHandler({isChecked, listId, taskId})
   }
 
-  lists = todoPanel.lists.map((list, index) => {
+  const handleDeleteList = list => {
+    props.actions.toggleDeleteDialog(true, list)
+  }
+
+  const deleteActions = [
+    <FlatButton label="Cancel" primary={true} onTouchTap={() => handleDelete(false)} keyboardFocused={true} />,
+    <FlatButton label="Delete" secondary={true} onTouchTap={() => handleDelete(true, todoPanel.deleteDialog.list)} />
+  ]
+
+  const handleDelete = (performDelete, list = {}) => {
+    if (performDelete) {
+      console.log("deleted", list)
+    }
+    props.actions.toggleDeleteDialog(false)
+  }
+
+  if (todoPanel.deleteDialog && todoPanel.deleteDialog.show) {
+    displayDialog = <Dialog title={todoPanel.deleteDialog.list.title} actions={deleteActions} modal={false} open={todoPanel.deleteDialog.show} onRequestClose={() => handleDelete(false)}>Are you sure you want to delete this list?</Dialog>
+  }
+
+  lists = todoPanel.lists.map(list => {
     let formatedDeadline = new Date(list.deadline).toDateString()
 
-    return <div key={index} className="content">
+    return <div key={list.id} className="content">
       <Card>
         <CardHeader
           className="card-header-todo"
@@ -36,16 +59,22 @@ const MainPanel = props => {
         />
         <CardText expandable={true}>
           <List>
-            {list.tasks.map((task, index) =>
+            {list.tasks.map(task =>
                 <ListItem
                   className="list-item-todo"
                   leftCheckbox={<Checkbox onClick={e => toggleCheckbox(e.target.checked, list.id, task.id)} checked={task.completed} />}
                   primaryText={<span className={task.completed ? "task-striked" : ""}>{task.value}</span>}
-                  key={index}
+                  key={task.id}
                 />
             )}
           </List>
         </CardText>
+        <CardActions className="card-actions">
+          <IconButton onClick={() => handleDeleteList(list)} tooltip="Delete" tooltipPosition="bottom-center"><i className="material-icons md-18">delete</i></IconButton>
+          <IconButton onClick={() => handleEditList(list)} tooltip="Edit" tooltipPosition="bottom-center"><i className="material-icons md-18">mode_edit</i></IconButton>
+          <IconButton onClick={() => handleMarkCompleted(list)} tooltip="Mark as Complete" tooltipPosition="bottom-center"><i className="material-icons md-18">check_box</i></IconButton>
+        </CardActions>
+        {displayDialog}
       </Card>
     </div>
   })

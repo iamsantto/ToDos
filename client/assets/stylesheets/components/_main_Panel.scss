@@ -25,3 +25,8 @@
 .task-striked {
   text-decoration: line-through;
 }
+
+.card-actions {
+  width: $total-width;
+  text-align: right;
+}

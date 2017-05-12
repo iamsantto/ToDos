@@ -5,7 +5,7 @@ import types from '../constants/actionTypes'
 
 const reducers = {}
 const initialState = {
-  title: 'Today',
+  title: 'Everything',
   create: {
     labels: [],
     tasks: []
@@ -38,6 +38,13 @@ reducers[types.SHOW_TAGGING] = (state, action) => {
   return Object.assign({}, state, { showTagging: true })
 }
 
+reducers[types.TOGGLE_DELETE_DIALOG] = (state, action) => {
+  if (action.payload.show)
+    return Object.assign({}, state, { deleteDialog: { show: action.payload.show, list: action.payload.list } })
+  else
+    return Object.assign({}, state, { deleteDialog: { show: action.payload.show } })
+}
+
 reducers[types.TOGGLE_COMPLETE_TASK] = (state, action) => {
   let newLists = []
 
@@ -54,7 +61,7 @@ reducers[types.TOGGLE_COMPLETE_TASK] = (state, action) => {
         else
           newTasks.push(task)
       })
-      newLists.push(Object.assign({}, list, {tasks: newTasks }))
+      newLists.push(Object.assign({}, list, { tasks: newTasks }))
     } else {
       newLists.push(list)
     }

@@ -4,12 +4,13 @@ import { List, ListItem } from 'material-ui/List'
 import { AddNew } from './'
 
 const Labels = props => {
-  const handleClick = value => {
-    props.actions.toggleTitle(value)
+  const handleClick = label => {
+    props.actions.toggleTitle(label.name)
+    props.actions.getTodoLists({ label: label.id })
   }
 
   let labelsList = props.labels.map(label =>
-    <ListItem key={label} primaryText={label} onClick={()=>handleClick(label)} leftIcon={<i className="material-icons">label</i>} />
+    <ListItem key={label.id} primaryText={label.name} onClick={()=>handleClick(label)} leftIcon={<i className="material-icons">label</i>} />
   )
 
   return (

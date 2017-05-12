@@ -14,7 +14,7 @@ class Dashboard extends Component {
   componentDidMount() {
     this.props.actions.getCategories()
     this.props.actions.getLabels()
-    this.props.actions.getTodoLists()
+    this.props.actions.getTodoLists({ deadline: this.props.todoPanel.title })
   }
 
   render() {

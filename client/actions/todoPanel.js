@@ -18,7 +18,7 @@ const hideSnackbar = () => {
   }
 }
 
-const getTodoLists = () => {
+const getTodoLists = (criteria) => {
   const lists = [
     {
       id: 1,
@@ -48,12 +48,23 @@ const getTodoLists = () => {
   }
 }
 
+const completeTaskHandler = data => {
+  return dispatch => {
+    dispatch(toggleCompleteTask(data))
+    // dispatch(updateDB(data))
+  }
+}
+
 const toggleCompleteTask = data => {
   return {
     type: types.TOGGLE_COMPLETE_TASK,
     payload: data
   }
 }
+
+// const updateDB = data => {
+
+// }
 
 const saveTodoList = body => {
   let options = {
@@ -71,6 +82,16 @@ const saveTodoList = body => {
       .catch(err => {
         dispatch(saveTodoFailure())
       })
+  }
+}
+
+const toggleDeleteDialog = (show, list) => {
+  return {
+    type: types.TOGGLE_DELETE_DIALOG,
+    payload: {
+      show,
+      list
+    }
   }
 }
 
@@ -150,4 +171,4 @@ const clearValues = () => {
   }
 }
 
-export default { addTaskToState, clearValues, toggleTitle, toggleCompleteTask, tagLabel, unTagLabel, showTagging, hideTagging, hideToDoAdder, showTodoAdder, saveTodoList, hideSnackbar, getTodoLists }
+export default { addTaskToState, clearValues, toggleTitle, completeTaskHandler, tagLabel, toggleDeleteDialog, unTagLabel, showTagging, hideTagging, hideToDoAdder, showTodoAdder, saveTodoList, hideSnackbar, getTodoLists }

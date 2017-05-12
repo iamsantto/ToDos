@@ -11,6 +11,7 @@ const Deadlines = props => {
 
   const handleClick = value => {
     props.actions.toggleTitle(value)
+    props.actions.getTodoLists({deadline: value})
   }
 
   return (

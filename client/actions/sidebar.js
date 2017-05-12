@@ -4,10 +4,10 @@ const getCategories = () => {
   const categories = [
     {
       name: 'Project A',
-      todos: ['ToDoList 1', 'ToDoList 2']
+      id: 0
     }, {
       name: 'Project B',
-      todos: ['List 1', 'List 2']
+      id: 1
     }
   ]
 
@@ -20,7 +20,7 @@ const getCategories = () => {
 }
 
 const getLabels = () => {
-  const labels = ['Label A', 'Label B', 'Label C']
+  const labels = [{ name: 'Label A', id: 0 }, { name: 'Label B', id: 1 }, { name: 'Label C', id: 2 }]
 
   return {
     type: types.LABELS_INIT,

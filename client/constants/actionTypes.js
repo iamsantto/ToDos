@@ -22,7 +22,9 @@ const actionTypes = {};
   'SAVE_TODO_FAILURE',
   'HIDE_SNACKBAR',
   'GET_TODO_LISTS_FINISH',
-  'TOGGLE_COMPLETE_TASK'
+  'TOGGLE_COMPLETE_TASK',
+  'CHECK_LIST_COMPLETE',
+  'TOGGLE_DELETE_DIALOG'
 ].forEach(action => { actionTypes[action] = action })
 
 export default Object.freeze(actionTypes)
