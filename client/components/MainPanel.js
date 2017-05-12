@@ -1,7 +1,8 @@
 import React from 'react'
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card'
-import {Table, TableBody, TableRow, TableRowColumn, } from 'material-ui/Table'
 import FlatButton from 'material-ui/FlatButton'
+import {List, ListItem} from 'material-ui/List'
+import Checkbox from 'material-ui/Checkbox'
 
 import { AddNew } from './'
 
@@ -10,12 +11,17 @@ const MainPanel = props => {
 
   const { todoPanel } = props
 
+  let toggleCheckbox = (isChecked, listId, taskId) => {
+    props.actions.toggleCompleteTask({isChecked, listId, taskId})
+  }
+
   lists = todoPanel.lists.map((list, index) => {
     let formatedDeadline = new Date(list.deadline).toDateString()
 
     return <div key={index} className="content">
       <Card>
         <CardHeader
+          className="card-header-todo"
           title={list.title}
           subtitle={
             <div>
@@ -29,15 +35,16 @@ const MainPanel = props => {
           showExpandableButton={true}
         />
         <CardText expandable={true}>
-          <Table selectable={true} className="content">
-            <TableBody>
-              {list.tasks.map((task, index) =>
-                <TableRow key={index}>
-                  <TableRowColumn>{task}</TableRowColumn>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
+          <List>
+            {list.tasks.map((task, index) =>
+                <ListItem
+                  className="list-item-todo"
+                  leftCheckbox={<Checkbox onClick={e => toggleCheckbox(e.target.checked, list.id, task.id)} checked={task.completed} />}
+                  primaryText={<span className={task.completed ? "task-striked" : ""}>{task.value}</span>}
+                  key={index}
+                />
+            )}
+          </List>
         </CardText>
       </Card>
     </div>

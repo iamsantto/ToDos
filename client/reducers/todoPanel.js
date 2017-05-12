@@ -38,6 +38,31 @@ reducers[types.SHOW_TAGGING] = (state, action) => {
   return Object.assign({}, state, { showTagging: true })
 }
 
+reducers[types.TOGGLE_COMPLETE_TASK] = (state, action) => {
+  let newLists = []
+
+  state.lists.map(list => {
+    if (list.id === action.payload.listId) {
+      let newTasks = []
+
+      list.tasks.map(task => {
+        if (task.id === action.payload.taskId)
+          if (action.payload.isChecked)
+            newTasks.push(Object.assign({}, task, { completed: true }))
+          else
+            newTasks.push(Object.assign({}, task, { completed: false }))
+        else
+          newTasks.push(task)
+      })
+      newLists.push(Object.assign({}, list, {tasks: newTasks }))
+    } else {
+      newLists.push(list)
+    }
+  })
+
+  return Object.assign({}, state, { lists: newLists })
+}
+
 reducers[types.SHOW_TO_DO_ADDER] = (state, action) => {
   return Object.assign({}, state, { showTodoAdder: true })
 }

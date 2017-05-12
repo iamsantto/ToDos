@@ -21,20 +21,21 @@ const hideSnackbar = () => {
 const getTodoLists = () => {
   const lists = [
     {
+      id: 1,
       title: "Random Important To-Do List",
       isCompleted: false,
       labels: ['Priority', 'Production'],
       category: 'Project A',
-      tasks: ["This is the first step", "Second step", "Really really really long step which is super important and takes time to do without which this to-do list is meaningless, i hope its long enough", "finishing touches"],
+      tasks: [{ id: 0, value: "This is the first step", completed: false }, { id: 1, value: "Second step", completed: false }, { id: 2, value: "Really really really long step which is super important and takes time to do without which this to-do list is meaningless, i hope its long enough", completed: false }, { id: 3, value: "finishing touches", completed: false}],
       deadline: '2017-05-17T18:30:00.000Z'
     },
     {
-
+      id: 2,
       title: "Random Normal To-Do List",
       isCompleted: true,
       labels: ['Staging'],
       category: 'Project B',
-      tasks: ["This is the first step", "Second step", "Really really really long step which is super important and takes time to do without which this to-do list is meaningless, i hope its long enough", "finishing touches"],
+      tasks: [{ id: 0, value: "This is the first step", completed: true }, { id: 1, value: "Second step", completed: false }, { id: 2, value: "Really really really long step which is super important and takes time to do without which this to-do list is meaningless, i hope its long enough", completed: true }, { id: 3, value: "finishing touches", completed: false }],
       deadline: '2017-05-17T18:30:00.000Z'
     }
   ]
@@ -44,6 +45,13 @@ const getTodoLists = () => {
     payload: {
       lists
     }
+  }
+}
+
+const toggleCompleteTask = data => {
+  return {
+    type: types.TOGGLE_COMPLETE_TASK,
+    payload: data
   }
 }
 
@@ -142,4 +150,4 @@ const clearValues = () => {
   }
 }
 
-export default { addTaskToState, clearValues, toggleTitle, tagLabel, unTagLabel, showTagging, hideTagging, hideToDoAdder, showTodoAdder, saveTodoList, hideSnackbar, getTodoLists }
+export default { addTaskToState, clearValues, toggleTitle, toggleCompleteTask, tagLabel, unTagLabel, showTagging, hideTagging, hideToDoAdder, showTodoAdder, saveTodoList, hideSnackbar, getTodoLists }

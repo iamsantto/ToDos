@@ -13,3 +13,15 @@
   max-height: $add-table-height;
   overflow: auto;
 }
+
+.list-item-todo {
+  font-weight: lighter !important;
+}
+
+.card-header-todo {
+  font-weight: bold !important;
+}
+
+.task-striked {
+  text-decoration: line-through;
+}
