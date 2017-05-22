@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import IconButton from 'material-ui/IconButton'
 import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
 import DatePicker from 'material-ui/DatePicker'
@@ -80,13 +81,17 @@ let AddTodoList = props => {
 
   if (todoPanel.create.labels)
     labels = todoPanel.create.labels.map(label =>
-      <Chip key={label} onRequestDelete={() => handleTagDelete(label)}>{label}</Chip>
+      <Chip key={label.id} onRequestDelete={() => handleTagDelete(label)}>{label.name}</Chip>
     )
 
   if (todoPanel.create.tasks)
     tasks = todoPanel.create.tasks.map((task, index) =>
       <TableRow key={index}>
         <TableRowColumn>{task}</TableRowColumn>
+        <TableRowColumn className="pull-right">
+          <IconButton onClick={() => handleDeleteTask(index)}><i className="material-icons md-18">clear</i></IconButton>
+          <IconButton onClick={() => handleEditTask(index)}><i className="material-icons md-18">mode_edit</i></IconButton>
+        </TableRowColumn>
       </TableRow>
     )
 
@@ -94,7 +99,7 @@ let AddTodoList = props => {
 
   if (props.labels)
     checkboxes = props.labels.map(label => {
-      return <Checkbox key={label} label={label} onClick={e => toggleCheckbox(e.target.checked, label)} checked={isChecked(label)} />
+      return <Checkbox key={label.id} label={label.name} onClick={e => toggleCheckbox(e.target.checked, label)} checked={isChecked(label)} />
     })
 
   if (todoPanel.showTagging) {

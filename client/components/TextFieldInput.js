@@ -8,6 +8,7 @@ const TextFieldInput = props => {
       fullWidth={props.fullWidth || false}
       floatingLabelText={props.label}
       type={props.type}
+      multiLine={props.multiline || false}
       {...props.value.input}
     />
   )
